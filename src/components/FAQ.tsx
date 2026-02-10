@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const sectionRef = useScrollReveal<HTMLElement>();
 
   const faqs = [
     {
@@ -36,45 +38,55 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-24 bg-gray-50" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="font-manrope text-4xl md:text-5xl font-bold text-emerald-800 mb-8">
+            <span className="scroll-hidden stagger-1 font-inter text-xs font-semibold tracking-[0.2em] uppercase text-yellow-600 mb-4 block">
+              FAQ
+            </span>
+            <h2 className="scroll-hidden stagger-2 font-manrope text-4xl md:text-5xl font-bold text-emerald-800 mb-6">
               Perguntas Frequentes
             </h2>
-            <p className="font-inter text-lg text-gray-700">
+            <p className="scroll-hidden stagger-3 font-inter text-lg text-gray-500">
               Tire suas dúvidas sobre nossos serviços e processo de trabalho
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-sm overflow-hidden"
+                className={`scroll-hidden stagger-${Math.min(index + 1, 6)} bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 ${
+                  openIndex === index ? 'shadow-lg shadow-emerald-900/5' : ''
+                }`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  className="w-full text-left p-6 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
                 >
-                  <span className="font-manrope text-lg font-semibold text-emerald-800 pr-4">
+                  <span className="font-manrope text-base font-bold text-emerald-800">
                     {faq.question}
                   </span>
-                  {openIndex === index ? (
-                    <ChevronUp className="text-yellow-600 flex-shrink-0" size={24} />
-                  ) : (
-                    <ChevronDown className="text-yellow-600 flex-shrink-0" size={24} />
-                  )}
+                  <div className={`w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                    openIndex === index ? 'bg-yellow-500 rotate-180' : ''
+                  }`}>
+                    <ChevronDown
+                      className={`transition-colors ${openIndex === index ? 'text-white' : 'text-emerald-800'}`}
+                      size={16}
+                    />
+                  </div>
                 </button>
-                
-                {openIndex === index && (
+
+                <div className={`overflow-hidden transition-all duration-300 ${
+                  openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                }`}>
                   <div className="px-6 pb-6">
-                    <p className="font-inter text-gray-700 leading-relaxed">
+                    <p className="font-inter text-gray-500 text-sm leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
