@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✦ LandingPage-minimalista
+# 🌸 LandingPage-minimalista
 
 ![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-4.4.9-646CFF?logo=vite)
