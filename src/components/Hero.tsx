@@ -38,10 +38,12 @@ const Hero = () => {
             <span className="font-inter text-sm text-white/80 tracking-wide uppercase">Agência de Marketing Digital</span>
           </div>
 
-          <h1 className="font-manrope text-5xl md:text-7xl font-extrabold text-white mb-6 leading-[1.1] tracking-tight">
-            Transforme Seu
-            <span className="text-gradient block mt-2">Negócio Digital</span>
-          </h1>
+        <h1 className="font-manrope text-5xl md:text-7xl font-extrabold text-white mb-6 leading-[1.15] tracking-tight">
+  Transforme Seu
+  <span className="block mt-2 text-yellow-400 drop-shadow-md">
+    Negócio Digital
+  </span>
+</h1>
 
           <p className="font-inter text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
             Soluções completas em marketing digital para acelerar seus resultados e aumentar suas vendas online
